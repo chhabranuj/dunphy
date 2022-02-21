@@ -1,0 +1,37 @@
+.tags {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    padding-top: 65px;
+    height: calc(100% - 65px);
+    margin-left: 5%;
+    flex-direction: column;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 95px;
+}
+
+.buttonParent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    padding: 23.5px 0;
+}
+
+.tagBtn {
+    background-color: black !important;
+}
+
+@media screen and (max-width: 641px) {
+}
