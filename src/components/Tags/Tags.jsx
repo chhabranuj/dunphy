@@ -1,12 +1,15 @@
 import './Tags.css';
 import axios from 'axios';
 import Fab from '@mui/material/Fab';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import TagsChild from '../TagsChild/TagsChild';
 import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
-import { useEffect, useState } from 'react';
 
 
 const Tags = () => {
+
+    const navigate = useNavigate();
     const [types, setTypes] = useState([]);
 
     useEffect(() => {
@@ -19,6 +22,10 @@ const Tags = () => {
             setTypes(tempTypes)
         })
     }, [])
+
+    const handleNavigationToTimeline = () => {
+        navigate("/timeline")
+    }
 
     return (
         <div className='tags'>
@@ -33,7 +40,7 @@ const Tags = () => {
             </div>
         <div className='buttonParent'>
             <Fab size="medium" className='tagBtn' aria-label="add">
-                <PlayArrowRoundedIcon style={{color: "white"}}/>
+                <PlayArrowRoundedIcon style={{color: "white"}} onClick={handleNavigationToTimeline}/>
             </Fab>
         </div>    
         </div>
