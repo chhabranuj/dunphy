@@ -19,7 +19,7 @@ const SignUp = () => {
 
     const handleName = (e) => {
         setName(e.target.value);
-        if(e.target.value.length <= 5) {
+        if(e.target.value.length <= 2) {
             setCheckName(true);
         }
         else {
