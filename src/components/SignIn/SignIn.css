@@ -1,0 +1,65 @@
+.signIn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.signUpSignInTitle {
+    font-size: x-large;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.inputErrorParent {
+    width: 80%;
+}
+
+.usernameAndPassword {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+}
+
+.userPasswordInput {
+    width: 80%;
+    border: none;
+    outline: none;
+    background-color: #e5e5e5;
+    padding: 15px 40px 15px 10px;
+    margin-left: 10px;
+    border-radius: 4px;
+}
+
+.error {
+    color: red;
+    margin: 5px 0 0 15px;
+    font-size: smaller;
+}
+
+.password {
+    margin: 20px 0;
+}
+
+.signInBtn {
+    margin:0 0 20px 10px !important;
+    background-color: black !important;
+}
+
+.toSignUpSignIn {
+    margin-left: 10px;
+}
+
+.toSignUp {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 641px) {
+    .usernameAndPassword {
+        width: 80%;
+    }
+}
