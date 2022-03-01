@@ -23,12 +23,12 @@
 @media screen and (max-width: 641px) {
     .tagsCard {
         height: 50px;
-        width: 40%;
+        width: 45%;
         margin: 2% !important;
     }
 
     .tagName {
-        font-size: small;
+        font-size: medium;
     }
 
     .tagTickIcon {

@@ -45,7 +45,7 @@
 }
 
 .signInBtn {
-    margin:0 0 20px 10px !important;
+    margin:10px 0 20px 10px !important;
     background-color: black !important;
 }
 
@@ -58,8 +58,19 @@
     font-weight: bold;
 }
 
+.alert {
+    width: 25%;
+    margin: 50px 0  0 10px;
+    text-align: center;
+    color: aqua;
+}
+
 @media screen and (max-width: 641px) {
     .usernameAndPassword {
+        width: 80%;
+    }
+
+    .alert {
         width: 80%;
     }
 }

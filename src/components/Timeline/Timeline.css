@@ -70,17 +70,63 @@
 
 .dialogData {
     padding: 5px 10px;
+    cursor: pointer;
 }
 
 .contactName {
-    font-size: large;
+    font-size: large; 
     margin: 5px;
 }
 
-.contactEmail {
+.contactId {
     color:grey;
     font-size: small;
     margin: 5px;
+}
+
+.MuiPaper-elevation {
+    padding: 30px;
+}
+
+.messageTitle {
+    font-size: large;
+    font-weight: bold;
+    margin: 0;
+}
+
+.messageIconAndInputParent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.messageInputAndErrorParent {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    margin: 25px 0;
+    width: 85%;
+}
+
+.messageInput {
+    border: none;
+    outline: none;
+    width: 80%;
+    background-color: #e5e5e5;
+    padding: 15px 0px 15px 10px;
+    margin-left: 10px;
+    border-radius: 4px;
+}
+
+.sendAndBackParent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.messageDialogBtn {
+    background-color: black !important;
 }
 
 @media screen and (max-width: 641px) {

@@ -34,4 +34,8 @@
 }
 
 @media screen and (max-width: 641px) {
+    .tags {
+        width: 95%;
+        margin-left: 2.5%;
+    }
 }
