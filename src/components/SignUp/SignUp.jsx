@@ -10,6 +10,7 @@ import PasswordRoundedIcon from '@mui/icons-material/PasswordRounded';
 import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
 import ErrorOutlineRoundedIcon from '@mui/icons-material/ErrorOutlineRounded';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
+import environment from '../../environment';
 
 const SignUp = () => {
 
@@ -66,7 +67,7 @@ const SignUp = () => {
                 _id: username,
                 password: password
             }
-            axios.post("http://localhost:5000/user/validateUsername", body)
+            axios.post(`${environment.serverUrl}/user/validateUsername`, body)
                 .then((response) => {
                     if(response.data.result) {
                         setShowAlert(true)

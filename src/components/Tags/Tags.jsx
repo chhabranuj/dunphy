@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import TagsChild from '../TagsChild/TagsChild';
 import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
+import environment from '../../environment';
 
 
 const Tags = (props) => {
@@ -13,11 +14,9 @@ const Tags = (props) => {
     const navigate = useNavigate();
     const location = useLocation();
     const [types, setTypes] = useState([]);
-
-    // const types = ['Python', 'Java', 'Artificial Intelligence', 'Robotics', 'C', 'Ruby','Javascript', 'Go', 'Kotlin', 'Robotics Process Automation', 'C++', 'PHP', 'NodeJs', 'MongoDb', 'C#', 'Quantum Computing', 'Ethical Hacking', 'Augmented Reality', 'Edge Computing', 'Azure', 'Flutter']
-
+    
     useEffect(() => {
-        axios.get('http://localhost:5000/interests/getInterests')
+        axios.get(`${environment.serverUrl}/interests/getInterests`)
         .then((response) => {
             const tempTypes = []
             response.data.result.map(item => {
@@ -36,7 +35,7 @@ const Tags = (props) => {
             interests: sessionStorage.getItem('selectedTags').split(',')
         };
 
-        axios.post('http://localhost:5000/user/insertUser', body)
+        axios.post(`${environment.serverUrl}/user/insertUser`, body)
         navigate('/timeline', {
             state: {
                 _id: body._id

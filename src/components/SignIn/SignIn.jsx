@@ -8,6 +8,7 @@ import PasswordRoundedIcon from '@mui/icons-material/PasswordRounded';
 import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import axios from 'axios';
+import environment from '../../environment';
 
 const SignIn = () => {
 
@@ -50,7 +51,7 @@ const SignIn = () => {
                 password: password,
             }
 
-            axios.post("http://localhost:5000/user/validateUser", body)
+            axios.post(`${environment.serverUrl}/user/validateUser`, body)
                 .then((response) => {
                     if(response.data.result) {
                         navigate('/timeline', {

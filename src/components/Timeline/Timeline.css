@@ -1,8 +1,9 @@
 .timeline {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
     width: 100%;
     padding-top: 65px;
 }
@@ -13,16 +14,29 @@
     align-items: flex-start;
     flex-direction: column;
     width: 30%;
-    margin-top: 20px;
+    margin: 20px 0;
 }
 
-.postImage {
-    height: auto;
-    width: 100%;
+.postMessageDiv {
+    width: 80%;
+    height: 400px;
+    line-height: 2;
+    padding: 0 10%;
+    border: 0.5px solid grey;
+    overflow-y: auto;
+}
+
+.postMessageDiv::-webkit-scrollbar {
+    display: none;
+}
+
+.postMessage {
+    margin: 0;
 }
 
 .postBy {
-    font-size: small;
+    font-size: medium;
+    margin: 2px;
 }
 
 .contactsIcon {

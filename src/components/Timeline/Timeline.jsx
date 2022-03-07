@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import CommentRoundedIcon from '@mui/icons-material/CommentRounded';
 import ContactsRoundedIcon from '@mui/icons-material/ContactsRounded';
+import environment from '../../environment';
 
 const Timeline = () => {
 
@@ -15,22 +16,26 @@ const Timeline = () => {
     const [posts, setPosts] = useState([]);
     const [message, setMessage] = useState('');
     const [contacts, setContacts] = useState([]);
-    const [messageError, setMessageError] = useState(false)
+    const [messageTo, setMessageTo] = useState('');
     const [openDialog, setOpenDialog] = useState(false);
+    const [messageError, setMessageError] = useState(false)
     const [openMessageDialog, setOpenMessageDialog] = useState(false);
 
     useEffect(() => {
-        const tempPosts = []
-        for(let i=0; i<100; i+=10) {
-            tempPosts.push({
-                url: `https://picsum.photos/id/${i}/400`,
-                title: 'Anuj Chhabra'
-            });
-        }
 
-        setPosts(tempPosts);
+        document.title = location.state._id
 
-        axios.get('http://localhost:5000/user/checkFriends', {
+        axios.get(`${environment.serverUrl}/message/getMessages`, {
+            params: {
+                userId: location.state._id
+            }
+        })
+            .then(response => {
+                if(response.data.result)
+                    setPosts(response.data.result.messageDetail.reverse())
+            })
+
+        axios.get(`${environment.serverUrl}/user/checkFriends`, {
             params: {_id: location.state._id}
         })
             .then((response) => {
@@ -66,12 +71,25 @@ const Timeline = () => {
             setMessageError(true);
         }
         else {
-            navigate('/');
+            const body = {
+                _id: messageTo,
+                messageDetail: [
+                    {
+                        message: message,
+                        messageBy: location.state._id,
+                        sentAt: new Date().toLocaleString()
+                    }
+                ],
+            }
+            axios.post(`${environment.serverUrl}/message/sendMessage`, body)
+                .then((response) => {
+                    handleCloseMessageDialog()
+                })
         }
     }
 
     const handleOpenMessageDialog = (e) => {
-        console.log(e.target.innerHTML)
+        setMessageTo(e.target.innerHTML)
         setOpenMessageDialog(true);
     }
 
@@ -83,11 +101,14 @@ const Timeline = () => {
     return(
         <div className='timeline'>
                 {
-                    posts.map(item => {
+                    posts.length > 0 && posts.map(item => {
                         return(
-                            <div key={item['url']} className='timelinePosts' onClick={handleCloseContactsDialog}>
-                                <img className='postImage' src={item['url']}></img>
-                                <p className='postBy'><span style={{fontWeight: 'bolder'}}>Sent By :</span> {item['title']}</p>
+                            <div key={item['sentAt']} className='timelinePosts' onClick={handleCloseContactsDialog}>
+                                <div className='postMessageDiv'>
+                                    {item['message']}
+                                </div>
+                                <p className='postBy'><span style={{fontWeight: 'bolder'}}>Sent By :</span> {item['messageBy']}</p>
+                                <p className='sentAt postBy'><span style={{fontWeight: 'bolder'}}>Sent At :</span> {item['sentAt']}</p>
                             </div>          
                         )
                     })
@@ -103,9 +124,9 @@ const Timeline = () => {
                     {
                         contacts.map(item => {
                             return(
-                                <div key={item['name']} className='dialogData' onClick={handleOpenMessageDialog}>
+                                <div key={item['name']} className='dialogData'>
                                     <p className='contactName'>{item.name}</p>
-                                    <p className='contactId'>{item._id}</p>
+                                    <p className='contactId' onClick={handleOpenMessageDialog}>{item._id}</p>
                                     <hr className='divider full'></hr>
                                 </div>
                             )
